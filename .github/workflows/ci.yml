@@ -19,4 +19,10 @@ jobs:
       - name: Build and test
         run: ./gradlew build test
       - name: Deploy
-        run: ./gradlew deployReports
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_ACTOR: ${{ github.actor }}
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "github-actions"
+          ./gradlew deployReports
