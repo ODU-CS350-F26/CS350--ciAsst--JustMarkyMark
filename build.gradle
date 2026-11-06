@@ -51,14 +51,6 @@ gitPublish{
 	contents{
 	from 'build/reports'
 	}
-
-	sign = false
-	def token = System.getenv("GITHUB_TOKEN")
-
-	if (token) {
-		username = System.getenv("GITHUB_ACTOR") ?: "git"
-		password = token
-	}
 }
 
 gitPublishCopy.dependsOn reports
