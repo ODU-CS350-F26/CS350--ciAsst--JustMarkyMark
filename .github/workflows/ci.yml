@@ -19,9 +19,9 @@ jobs:
       - name: Build and test
         run: ./gradlew build test
       - name: Deploy reports using an SSH agent
-      run: |
-        eval $(ssh-agent -s -t 600)        
-        ssh-add <(echo "${{ secrets.REPORTS_SSH_KEY }}")
-        git config --global user.email "mfous001@odu.edu"
-        git config --global user.name "JustMarkyMark"
-        ./gradlew deployReports
+        run: |
+          eval $(ssh-agent -s -t 600)        
+          ssh-add <(echo "${{ secrets.REPORTS_SSH_KEY }}")
+          git config --global user.email "mfous001@odu.edu"
+          git config --global user.name "JustMarkyMark"
+          ./gradlew deployReports
