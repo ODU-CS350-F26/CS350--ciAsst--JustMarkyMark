@@ -45,11 +45,19 @@ task copyDocs(type: Copy, dependsOn: javadoc){
 task reports (dependsOn: [build, copyHTML, copyDocs])
 
 gitPublish{
-	repoUri = 'git@github.com:ODU-CS350-F26/CS350--lab4-documentation--JustMarkyMark.git'
+	repoUri = 'https://github.com/ODU-CS350-F26/CS350--ciAsst--JustMarkyMark.git'
 	branch = 'gh-pages'
 
 	contents{
 	from 'build/reports'
+	}
+
+	sign = false
+	def token = System.getenv("GITHUB_TOKEN")
+
+	if (token) {
+		username = System.getenv("GITHUB_ACTOR") ?: "git"
+		password = token
 	}
 }
 
