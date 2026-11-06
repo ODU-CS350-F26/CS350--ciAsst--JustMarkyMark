@@ -34,7 +34,7 @@ application { //Allows  ./gradlew run --args=path-to-test-data
 
 task copyHTML(type: Copy){
 	from 'src/main/html/'
-	into 'build/html/'
+	into 'build/reports/'
 }
 
 task copyDocs(type: Copy, dependsOn: javadoc){
@@ -49,11 +49,7 @@ gitPublish{
 	branch = 'gh-pages'
 
 	contents{
-		from 'build/reports'
-		into 'reports'
-	}
-	contents {
-		from 'build/html'
+	from 'build/reports'
 	}
 }
 
